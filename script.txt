@@ -1,0 +1,15 @@
+inteiro i;
+//string br;
+inteiro num;
+{
+	//br = "0";
+	i = 1 / 2 + 1 * 2;
+	num = 999;
+	se (i < 4) entao {
+		escreva i;
+		//escreva br;
+		// i = i + 1;
+	} senao {
+		escreva num;
+	}
+}
