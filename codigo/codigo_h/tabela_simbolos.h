@@ -4,7 +4,7 @@
 #define MAX_SIZE_HASH_ARRAY 20
 #define MAX_SIZE_SYMBOL 32
 
-typedef enum {INTEIRO, REAL, STRING} Tipo; //MUDAR PARA TIPO EM PT-BR
+typedef enum {INTEIRO, REAL, STRING} Tipo;
 
 extern int contador_linhas;
 
@@ -35,8 +35,8 @@ typedef struct symTable SymTable;
 extern SymTable tabela_simbolos;
 
 //Prototipos das funcoes
-int initSymTable(SymTable* table);
-void printSymTable(SymTable* table);
+int iniciaTabelaSimbolos(SymTable* table);
+void imprimeTabelaSimbolos(SymTable* table);
 int addSymTable(SymTable* table, char* identificador, Tipo tipo);
 SymTableEntry* findSymTable(SymTable* table, char* identificador);
 void freeSymTable(SymTable* table);

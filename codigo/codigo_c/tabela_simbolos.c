@@ -18,7 +18,7 @@ int hashFunction(int max_size, char* key) {
 }
 
 //Funcao que inicializa tabela Hash, colocando -1 em todos os numeros
-int initSymTable(SymTable* table) {
+int iniciaTabelaSimbolos(SymTable* table) {
 								table->size = 0;
 								table->max_size = MAX_SIZE_HASH_ARRAY;
 
@@ -38,7 +38,7 @@ int initSymTable(SymTable* table) {
 }
 
 // Funcao que realiza a impressao da Hash
-void printSymTable(SymTable* table) {
+void imprimeTabelaSimbolos(SymTable* table) {
 								int i = 0;
 								int cont = 0;
 

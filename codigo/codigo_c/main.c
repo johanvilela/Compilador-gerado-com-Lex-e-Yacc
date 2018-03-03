@@ -4,10 +4,9 @@
 #include <tabela_simbolos.h>
 #include <y.tab.h>
 
+// Variáveis Globais
 FILE* saida_asm = NULL;
-
 SymTable tabela_simbolos;
-
 int contador_linhas = 1;
 
 int main(int argc, char const *argv[]) {
@@ -44,24 +43,19 @@ int main(int argc, char const *argv[]) {
         fprintf(saida_asm, "extern scanf\n");
         fprintf(saida_asm, "section .data\n");
 
-        // this are strings without a line break character
-        fprintf(saida_asm, "fmt_d: db \"%%ld\", 0\n");
-        fprintf(saida_asm, "fmt_f: db \"%%f\", 0\n");
-        fprintf(saida_asm, "fmt_s: db \"%%s\", 0\n");
-
-        // this are strings that contain a line break character
+        // Strings usadas para a quebra de linha
         fprintf(saida_asm, "fmt_dln: db \"%%ld\", 10, 0\n");
         fprintf(saida_asm, "fmt_fln: db \"%%f\", 10, 0\n");
         fprintf(saida_asm, "fmt_sln: db \"%%s\", 10, 0\n");
         fprintf(saida_asm, "\n");
 
-        initSymTable(&tabela_simbolos);
+        iniciaTabelaSimbolos(&tabela_simbolos);
 
         FILE* teclado = stdin;
         stdin = fopen(argv[1], "r");
 
         int resultado = yyparse();  // Chamada do Analisador Sintático
-        // Encerra o programa caso erro na análise sintática
+        // Encerra o programa em caso de erro na análise sintática
         if (resultado == 1) {
                 fclose(saida_asm);
                 remove(s);
@@ -71,7 +65,7 @@ int main(int argc, char const *argv[]) {
         fprintf(saida_asm, "mov rax,0\n");
         fprintf(saida_asm, "ret\n");
 
-        printSymTable(&tabela_simbolos);
+        imprimeTabelaSimbolos(&tabela_simbolos);
 
         fclose(saida_asm);
         fclose(stdin);

@@ -17,7 +17,7 @@ int geraCodigoLeia(char* destino, char *id);
 int geraCodigoEscreva(char* destino, char *id);
 
 int geraCodigoAtribuicao(char* destino, char* id, char* expressao);
-int makeCodeLoad(char* destino, char* id, int ref);
+int geraCodigo_termo_e_fator(char* destino, char* id, int ref);
 
 void geraCodigoSoma(char* destino, char* conteudo);
 void geraCodigoSubtracao(char* destino, char* conteudo);

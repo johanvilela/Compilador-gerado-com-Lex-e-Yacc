@@ -105,7 +105,7 @@ int geraCodigoAtribuicao(char* destino, char* id, char* expressao) {
         return 1;
 }
 // MUDAR AQUI
-int makeCodeLoad(char* destino, char* id, int ref) {
+int geraCodigo_termo_e_fator(char* destino, char* id, int ref) {
         destino[0] = '\0';
 
         if (ref == 0) {

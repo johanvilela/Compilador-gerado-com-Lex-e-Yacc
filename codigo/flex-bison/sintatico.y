@@ -5,15 +5,15 @@
   #include <gerador_codigo.h>
 
   void yyerror(char*);
-  int yylex();
+  int  yylex();
 
   extern SymTable tabela_simbolos;
 %}
 
 %union {
 	struct simbolo {
-		char conteudo[2044];  // Armazena código ASM
-    char tipo_jump[4];
+		char conteudo[4096];  // Armazena código ASM em geral
+        char tipo_jump[4];    // Armazena código do jump
 	} simbolo;
 }
 
@@ -155,10 +155,10 @@ comando_escrita:      ESCREVA ID ';' {
 
 comando_atribuicao:   ID '=' expressao_numerica ';' {
                         if (!geraCodigoAtribuicao($$.conteudo, $1.conteudo, $3.conteudo))
-                        YYABORT;
+                            YYABORT;
                       };
 
-                      /* REGRA OK*/ /* NÃO FUNCIONA COM NUMERO REAL*/
+                      /* REGRA OK, PORÉM NA IMPLEMENTAÇÃO NÃO FUNCIONA COM NUMERO REAL*/
 expressao_numerica:   expressao_numerica '+' expressao_numerica {
                         geraCodigoSoma($$.conteudo, $3.conteudo);
                       }
@@ -178,19 +178,19 @@ expressao_numerica:   expressao_numerica '+' expressao_numerica {
 
 
 termo:                NUM {
-              		      makeCodeLoad($$.conteudo, $1.conteudo, 0);
+              		      geraCodigo_termo_e_fator($$.conteudo, $1.conteudo, 0);
                       }
                       | ID  {
-                        if (!makeCodeLoad($$.conteudo, $1.conteudo, 1))
+                        if (!geraCodigo_termo_e_fator($$.conteudo, $1.conteudo, 1))
                         YYABORT;
                       };
 
 
 fator:                NUM {
-              		      makeCodeLoad($$.conteudo, $1.conteudo, 0);
+              		      geraCodigo_termo_e_fator($$.conteudo, $1.conteudo, 0);
                       }
                       | ID {
-                        makeCodeLoad($$.conteudo, $1.conteudo, 1);
+                        geraCodigo_termo_e_fator($$.conteudo, $1.conteudo, 1);
                       }
                       | '(' expressao_numerica ')'  {
                         strcpy($$.conteudo, $2.conteudo);
@@ -241,5 +241,5 @@ operador_relacional:  MENOR {
 %%	/* Seção das Subrotinas */
 
 void yyerror(char *tipo_do_erro) {
-   fprintf(stderr, "ERRO NA LINHA %d: %s\n", contador_linhas, tipo_do_erro);
+    fprintf(stderr, "ERRO NA LINHA %d: %s\n", contador_linhas, tipo_do_erro);
 }
