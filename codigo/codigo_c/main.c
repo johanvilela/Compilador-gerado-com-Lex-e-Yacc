@@ -29,7 +29,7 @@ int main(int argc, char const *argv[]) {
         else {
                 for (i = n - 1; i >= 0 && argv[1][i] != '.'; i--) {}
                 if (i == -1) {
-                        fprintf(stderr, "JOE: Extensao do arquivo de entrada incorreta\n");
+                        fprintf(stderr, "Arquivo de entrada incompatível\n");
                         exit(0);
                 }
                 strncpy(s, argv[1], i);
