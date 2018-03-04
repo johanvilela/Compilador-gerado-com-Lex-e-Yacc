@@ -1,0 +1,12 @@
+inteiro parada;
+inteiro contador;
+string msg;
+{
+  parada = 10;
+  contador = 0;
+  enquanto (contador < parada) faca {
+    escreva contador;
+    contador = contador + 1;
+  }
+  // comentario
+}

@@ -19,6 +19,9 @@ clean-compiled-files:
 clean:
 	rm -rf ccc
 
+tudo:
+	./ccc $(var).txt && nasm -f elf64 $(var).asm && gcc -g $(var).o -o $(var)
+
 compila:
 	./ccc $(var).txt
 
